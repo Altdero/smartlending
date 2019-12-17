@@ -1,1 +1,109 @@
-/* You can add global styles to this file, and also import other style files */
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.h-100-vh {
+  height: 100vh;
+}
+.cursor-pointer {
+  cursor: pointer !important;
+}
+.bg-trans {
+  /* background-color: #303030;
+  color: #fff; */
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.img-circle {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  background-color: #bdd6e6;
+  cursor: pointer;
+}
+.dropdown-menu {
+  color: inherit !important;
+  background-color: inherit !important;
+}
+
+/* ======================================================== */
+/* TRANSICIONES Y ANIMACIONES */
+/* ======================================================== */
+.animated.delay-0_5s {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+.transitions {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.transitions-slow {
+  -webkit-transition: all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  -ms-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+.noFadeHover {
+  background-image: linear-gradient(#bdd6e6, #bdd6e6);
+  background-repeat: no-repeat;
+}
+.center-right-left,
+.center-top-bottom,
+.center-corner {
+  background-position: 50% 50%;
+}
+.to-left {
+  background-position: 100% 50%;
+}
+.to-right {
+  background-position: 0% 50%;
+}
+.to-top {
+  background-position: 50% 100%;
+}
+.to-bottom {
+  background-position: 50% 0%;
+}
+.center-right-left,
+.to-left,
+.to-right {
+  background-size: 0% 100%;
+}
+.center-top-bottom,
+.to-top,
+.to-bottom {
+  background-size: 100% 0%;
+}
+.center-corner {
+  background-size: 0% 0%;
+}
+.fadeHover:hover:not(.active) {
+  background-color: #bdd6e6;
+}
+.noFadeHover:hover:not(.active) {
+  background-size: 100% 100%;
+  color: #7474c1 !important;
+  font-weight: bold !important;
+}
+.animated.mid-fast {
+  -webkit-animation-duration: 0.6s;
+  animation-duration: 0.6s;
+}
+.animated.fastest {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+}
+.animated.ultrafast {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}

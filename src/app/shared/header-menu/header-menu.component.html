@@ -1,0 +1,97 @@
+<mat-sidenav-container class="h-100 animated fadeIn">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" role="navigation" opened="false" mode="over">
+    <mat-toolbar color="primary" class="mat-elevation-z6 justify-content-between">
+      <span *ngIf="!mobileQuery.matches">MENÚ</span>
+      <img *ngIf="mobileQuery.matches" src="assets/img/logo-menu.png" />
+      <mat-icon (click)="toggleSideNav()" class="cursor-pointer" aria-label="Abre/Cierra menú lateral">clear</mat-icon>
+    </mat-toolbar>
+    <mat-list (click)="toggleSideNav()">
+      <mat-list-item [routerLink]="['/repositorios']" routerLinkActive="active">
+        <mat-icon>cloud</mat-icon>
+        &nbsp; Repositorios
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/proyectos']" routerLinkActive="active">
+        <mat-icon>important_devices</mat-icon>
+        &nbsp; Proyectos
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/seguidores']" routerLinkActive="active">
+        <mat-icon>how_to_reg</mat-icon>
+        &nbsp; Seguidores
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/siguiendo']" routerLinkActive="active">
+        <mat-icon>supervisor_account</mat-icon>
+        &nbsp; Siguiendo
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/busqueda']" routerLinkActive="active">
+        <mat-icon>search</mat-icon>
+        &nbsp; Búsqueda
+      </mat-list-item>
+      <!-- <mat-list-item *ngIf="mobileQuery.matches" [routerLink]="['/login']" routerLinkActive="active">
+        <mat-icon>exit_to_app</mat-icon>
+        &nbsp; Cerrar sesión
+      </mat-list-item> -->
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content role="main">
+    <mat-toolbar color="primary" class="mat-elevation-z6">
+      <mat-icon (click)="toggleSideNav()" class="cursor-pointer mr-sm-3" aria-label="Abre/Cierra menú lateral">menu</mat-icon>
+      <!-- <div class="w-100 m-0 p-0 d-flex justify-content-end justify-content-sm-between"> -->
+      <div class="w-100 m-0 p-0 d-flex">
+        <img *ngIf="!mobileQuery.matches" class="ml-3 ml-sm-0" src="assets/img/logo-menu.png" />
+        <div *ngIf="!loading" class="ml-auto">
+          <img [src]="usuario?.avatar_url" class="img-circle" [matMenuTriggerFor]="menu" />
+          <mat-menu class="mt-2" #menu="matMenu">
+            <mat-list role="list">
+              <mat-list-item style="cursor: default;">
+                <h5 class="w-100 pb-0 text-center">{{ usuario?.name }}</h5>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item [routerLink]="['/perfil']" role="listitem">
+                <mat-icon mat-list-icon>person_outline</mat-icon>
+                <p mat-line>Mi Perfil</p>
+              </mat-list-item>
+              <mat-list-item [routerLink]="['/ajustes']" role="listitem">
+                <mat-icon mat-list-icon>build</mat-icon>
+                <p mat-line>Ajustes</p>
+              </mat-list-item>
+              <mat-list-item (click)="expandido = !expandido; $event.stopPropagation()" role="listitem">
+                <mat-icon mat-list-icon>color_lens</mat-icon>
+                <p mat-line>Cambiar tema</p>
+              </mat-list-item>
+              <mat-expansion-panel [expanded]="expandido" (click)="$event.stopPropagation()" hideToggle="true" displayMode="flat">
+                <mat-grid-list role="list" gutterSize="20px" cols="2">
+                  <mat-grid-tile (click)="cambiaTema('deeppurple-amber')" class="selector">
+                    <div class="selector-tema deeppurple-amber w-100 h-100">
+                      <mat-icon *ngIf="tema === 'deeppurple-amber'" class="tema-seleccionado">check_circle</mat-icon>
+                    </div>
+                  </mat-grid-tile>
+                  <mat-grid-tile (click)="cambiaTema('indigo-pink')" class="selector">
+                    <div class="selector-tema indigo-pink w-100 h-100">
+                      <mat-icon *ngIf="tema === 'indigo-pink'" class="tema-seleccionado">check_circle</mat-icon>
+                    </div>
+                  </mat-grid-tile>
+                  <mat-grid-tile (click)="cambiaTema('pink-bluegrey')" class="selector">
+                    <div class="selector-tema pink-bluegrey w-100 h-100">
+                      <mat-icon *ngIf="tema === 'pink-bluegrey'" class="tema-seleccionado">check_circle</mat-icon>
+                    </div>
+                  </mat-grid-tile>
+                  <mat-grid-tile (click)="cambiaTema('purple-green')" class="selector">
+                    <div class="selector-tema purple-green w-100 h-100">
+                      <mat-icon *ngIf="tema === 'purple-green'" class="tema-seleccionado">check_circle</mat-icon>
+                    </div>
+                  </mat-grid-tile>
+                </mat-grid-list>
+              </mat-expansion-panel>
+              <mat-list-item [routerLink]="['/login']" role="listitem">
+                <mat-icon mat-list-icon>exit_to_app</mat-icon>
+                <p mat-line>Cerrar sesión</p>
+              </mat-list-item>
+            </mat-list>
+          </mat-menu>
+        </div>
+      </div>
+    </mat-toolbar>
+    <!-- Contenido de la página -->
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

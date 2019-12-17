@@ -1,0 +1,106 @@
+<div class="container-fluid h-100 d-flex justify-content-center align-items-center animated fadeIn bg-dark">
+  <div class="login-container px-0 px-sm-3 card text-center shadow">
+    <div class="card-body">
+      <img src="assets/img/logo.png" class="mw-100 sm-logo" />
+      <h5 class="card-title my-4">Ingresa tus credenciales</h5>
+      <form [formGroup]="formaLogin" (ngSubmit)="accesso()">
+        <div class="form-group mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-dark">
+                <i class="material-icons text-white">perm_identity</i>
+              </div>
+            </div>
+            <input
+              [ngClass]="{
+                'is-invalid': formaLogin.controls.nick.invalid && formaLogin.controls.nick.dirty
+              }"
+              type="text"
+              class="form-control"
+              name="nick"
+              autocomplete="username"
+              placeholder="Nick..."
+              formControlName="nick"
+              required
+              aria-describedby="nickHelper"
+            />
+            <div *ngIf="formaLogin.controls.nick.errors?.required && formaLogin.controls.nick.dirty" class="invalid-tooltip text-left fadeIn animated">
+              El campo es requerido
+            </div>
+          </div>
+          <small id="nickHelper" class="form-text text-muted text-left">
+            Si no proporcionas un tóken, deberás proporcionar un usuario
+          </small>
+        </div>
+        <div class="form-group mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-dark">
+                <i class="material-icons text-white">vpn_key</i>
+              </div>
+            </div>
+            <input
+              [ngClass]="{
+                'is-invalid': formaLogin.controls.contrasena.invalid && formaLogin.controls.contrasena.dirty
+              }"
+              [type]="hide ? 'password' : 'text'"
+              class="form-control"
+              name="contrasena"
+              autocomplete="current-password"
+              placeholder="Contraseña..."
+              formControlName="contrasena"
+              required
+              aria-describedby="contrasenaHelper"
+            />
+            <div *ngIf="formaLogin.controls.contrasena.errors?.required && formaLogin.controls.contrasena.dirty" class="invalid-tooltip text-left fadeIn animated">
+              El campo es requerido
+            </div>
+            <div (click)="hide = !hide" class="input-group-append cursor-pointer">
+              <div class="input-group-text bg-dark">
+                <i class="material-icons text-white" [title]="hide ? 'Mostrar contraseña' : 'Ocultar contraseña'">{{ hide ? 'visibility_off' : 'visibility' }}</i>
+              </div>
+            </div>
+          </div>
+          <small id="contrasenaHelper" class="form-text text-muted text-left">
+            Tip: "123456" ... ;)
+          </small>
+        </div>
+        <div class="form-group mb-3">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-dark">
+                <i class="material-icons text-white">fingerprint</i>
+              </div>
+            </div>
+            <input
+              [ngClass]="{
+                'is-invalid': formaLogin.controls.token.invalid && formaLogin.controls.token.dirty
+              }"
+              type="text"
+              class="form-control"
+              id="token"
+              placeholder="Tóken..."
+              formControlName="token"
+              aria-describedby="tokenHelper"
+            />
+          </div>
+          <small id="tokenHelper" class="form-text text-muted text-left">
+            Captura tu tóken para crear o borrar repositorios
+          </small>
+        </div>
+        <p *ngIf="error" class="text-danger animated fadeInDown">
+          {{ mensajeError }}
+        </p>
+        <div class="d-flex justify-content-center">
+          <button [disabled]="formaLogin.invalid" type="submit" class="btn btn-block btn-success">
+            Entrar
+          </button>
+          &nbsp;&nbsp;&nbsp;
+          <button (click)="formaLogin.reset()" type="button" class="btn btn-block btn-danger mt-0">
+            Limpiar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

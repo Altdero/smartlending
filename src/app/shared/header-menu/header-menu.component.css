@@ -1,0 +1,64 @@
+.sidenav-container {
+  height: 100%;
+}
+.sidenav {
+  width: 20vw !important;
+}
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 60px;
+}
+.mat-list-item {
+  cursor: pointer;
+}
+.mat-list-item.active {
+  font-weight: bold !important;
+}
+.selector-tema.deeppurple-amber::after {
+  background: rgb(103, 58, 183) none repeat scroll 0% 0%;
+}
+.selector-tema.indigo-pink::after {
+  background: rgb(63, 81, 181) none repeat scroll 0% 0%;
+}
+.selector-tema.pink-bluegrey::after {
+  background: rgb(233, 30, 99) none repeat scroll 0% 0%;
+}
+.selector-tema.purple-green::after {
+  background: rgb(156, 39, 176) none repeat scroll 0% 0%;
+}
+.selector-tema::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* .selector-tema.seleccionado::after {
+  font-family: 'Material Icons';
+  content: '\e86c';
+} */
+.tema-seleccionado {
+  color: #ffffff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* ======================================================== */
+/* DISEÑO RESPONSIVO */
+/* ======================================================== */
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .sidenav {
+    width: 100% !important;
+  }
+}

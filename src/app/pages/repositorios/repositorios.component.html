@@ -1,0 +1,88 @@
+<div class="container-fluid my-3 animated fadeIn">
+  <div class="row mb-4">
+    <div class="col-12 col-sm-2 mb-4 mb-sm-0 text-center text-sm-left">
+      <h3>Repositorios</h3>
+    </div>
+    <!-- Crear nuevo repositorio público -->
+    <div class="col-12 col-sm-10">
+      <button mat-raised-button color="primary" (click)="toggleNuevo()">Nuevo</button>
+      <mat-expansion-panel [expanded]="panelAbierto" class="m-0 mt-2 p-0 col-12 col-sm-8">
+        <form [formGroup]="formaRepoNuevo" #formDirective="ngForm" (ngSubmit)="creaRepo(formDirective)" autocomplete="off" class="w-100">
+          <div class="row mt-2">
+            <mat-form-field class="col-12 col-sm-6 order-1">
+              <input matInput id="name" formControlName="name" placeholder="Nombre del repo" required tabindex="1" />
+              <mat-error *ngIf="formaRepoNuevo.controls['name'].hasError('required')">
+                El campo es requerido
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-sm-6 order-3 order-sm-2">
+              <input matInput id="homepage" formControlName="homepage" placeholder="Página principal" tabindex="4" />
+            </mat-form-field>
+            <mat-form-field class="col-12 col-sm-6 order-2 order-sm-3">
+              <input matInput id="description" formControlName="description" placeholder="Descripción" required tabindex="2" />
+            </mat-form-field>
+            <div class="col-12 col-sm-6 order-4 mb-3 mb-sm-0">
+              <mat-checkbox id="auto_init" formControlName="auto_init" color="primary" class="check-auto-init" aria-describedby="autoInitHelper" tabindex="5">
+                Inicializar repo con archivo README
+              </mat-checkbox>
+              <br />
+              <small id="autoInitHelper" class="text-muted text-left">
+                Al hacer ésto el repositorio se clonará inmediatamente a tu PC
+              </small>
+            </div>
+            <div class="col-12 order-5 d-flex justify-content-end align-items-center">
+              <button [disabled]="formaRepoNuevo.invalid" mat-raised-button type="submit" color="accent" tabindex="5">Crear</button>
+            </div>
+          </div>
+        </form>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <!-- Filtros -->
+  <div class="row">
+    <div class="col-12 col-sm-2">
+      <div class="row">
+        <!-- Filtro por tipo (lenguaje) -->
+        <div class="col-6 col-sm-12 mb-sm-4">
+          <h5 class="mb-3">Tipo</h5>
+          <div class="row">
+            <mat-checkbox *ngFor="let tipo of tipos" [(ngModel)]="tipo.checked" (change)="filtraRepos()" color="primary" class="col-12 col-sm-6">
+              {{ tipo.text }}
+            </mat-checkbox>
+          </div>
+        </div>
+        <!-- Filtro por acceso (tipo de repositorio) -->
+        <div class="col-6 col-sm-12">
+          <h5 class="mb-3">Acceso</h5>
+          <div class="row">
+            <mat-checkbox *ngFor="let acceso of accesos" [(ngModel)]="acceso.checked" (change)="filtraRepos()" color="primary" class="col-12 col-sm-6">
+              {{ acceso.text }}
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Tarjetas de repositorios -->
+    <div class="col-12 col-sm-10 mt-3 mt-sm-0">
+      <div class="row px-2">
+        <p class="col-6 mb-2 px-2">Totales: {{ repos.length }}</p>
+        <p class="col-6 mb-2 px-2">Filtrados: {{ reposFiltrados.length }}</p>
+        <div *ngFor="let repo of reposFiltrados" class="col-12 col-sm-6 col-md-4 p-2">
+          <mat-card class="w-100 animated fadeIn delay-0_5s">
+            <mat-card-header>
+              <mat-card-title>{{ repo.name | uppercase }}</mat-card-title>
+              <mat-card-subtitle>{{ repo.language || 'N/A' }} - {{ repo.private ? 'Acceso privado' : 'Acceso público' }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ repo.description }}</p>
+            </mat-card-content>
+            <mat-card-actions class="d-flex justify-content-center">
+              <button (click)="enlaceExterno(repo.html_url)" mat-raised-button color="primary">Visitar</button>
+              <button *ngIf="!repo.private" (click)="eliminaRepo(repo.name)" mat-raised-button color="warn">Eliminar</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

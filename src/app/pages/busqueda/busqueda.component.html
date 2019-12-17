@@ -1,0 +1,37 @@
+<div class="mx-2 my-3 animated fadeIn">
+  <div class="container">
+    <div class="row">
+      <mat-form-field class="col-12 col-sm-6">
+        <input [(ngModel)]="busqueda" matInput (keyup)="buscarUsuarios()" placeholder="Filtrar lista..." />
+      </mat-form-field>
+      <mat-form-field class="col-8 col-sm-4">
+        <input [(ngModel)]="numUsuarios" (keypress)="soloEnterosPositivos($event)" matInput placeholder="Número de usuarios" />
+      </mat-form-field>
+      <div class="col-4 col-sm-2 d-flex align-items-center justify-content-end">
+        <button (click)="obtenerUsuarios()" mat-raised-button color="primary">Actualizar</button>
+      </div>
+    </div>
+  </div>
+  <app-tarjeta *ngIf="!loading" [tarjetas]="usuariosFiltrados" [pantalla]="'busqueda'"></app-tarjeta>
+  <!-- <div class="row mx-0 px-0">
+    <div *ngFor="let usr of usuariosFiltrados" class="col-12 col-sm-6 col-md-4 col-lg-3 p-2">
+      <mat-card class="w-100 animated flipInY delay-0_5s">
+        <mat-card-header>
+          <mat-card-title>{{ usr.login | uppercase }}</mat-card-title>
+        </mat-card-header>
+        <div class="card-img-overlay">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+        <img (click)="accederRepositorio(usr.login)" [src]="usr.avatar_url" mat-card-image />
+        <mat-card-actions class="d-flex justify-content-around">
+          <button (click)="enlaceExterno(usr.html_url)" mat-stroked-button mat-raised-button><mat-icon>cloud</mat-icon></button>
+          <button (click)="enlaceExterno(usr.html_url + '?tab=repositories')" mat-raised-button color="primary"><mat-icon>important_devices</mat-icon></button>
+          <button (click)="enlaceExterno(usr.html_url + '?tab=followers')" mat-raised-button color="accent"><mat-icon>how_to_reg</mat-icon></button>
+          <button (click)="enlaceExterno(usr.html_url + '?tab=following')" mat-raised-button color="warn"><mat-icon>supervisor_account</mat-icon></button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div> -->
+</div>

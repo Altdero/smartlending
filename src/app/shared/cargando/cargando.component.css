@@ -1,0 +1,15 @@
+.back-dark {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1059;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.mi-spinner.mat-progress-spinner::ng-deep circle,
+.mi-spinner.mat-spinner::ng-deep circle {
+  stroke: white !important;
+}

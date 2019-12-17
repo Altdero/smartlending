@@ -1,0 +1,19 @@
+<div *ngIf="!loading" class="row mx-0 px-0 animated faster fadeIn">
+  <h3 *ngIf="tarjetas.length < 1" class="w-100 text-center animated fadeIn">
+    {{ mensajeSinDatos }}
+  </h3>
+  <div *ngFor="let tarjeta of tarjetas" class="col-12 col-sm-6 col-md-4 col-lg-3 p-2">
+    <mat-card class="w-100 animated flipInY delay-0_5s">
+      <mat-card-header>
+        <mat-card-title>{{ tarjeta.login | uppercase }}</mat-card-title>
+      </mat-card-header>
+      <img (click)="accederRepositorio(tarjeta.login)" [src]="tarjeta.avatar_url" mat-card-image />
+      <mat-card-actions class="d-flex justify-content-around">
+        <button (click)="enlaceExterno(tarjeta.html_url)" mat-stroked-button mat-raised-button><mat-icon>cloud</mat-icon></button>
+        <button (click)="enlaceExterno(tarjeta.html_url + '?tab=repositories')" mat-raised-button color="primary"><mat-icon>important_devices</mat-icon></button>
+        <button (click)="enlaceExterno(tarjeta.html_url + '?tab=followers')" mat-raised-button color="accent"><mat-icon>how_to_reg</mat-icon></button>
+        <button (click)="enlaceExterno(tarjeta.html_url + '?tab=following')" mat-raised-button color="warn"><mat-icon>supervisor_account</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
